@@ -1,0 +1,8 @@
+<!-- Created using Noesis XAML exporter for TexturePacker (http://www.texturepacker.com) -->
+<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+{% for sprite in sprites %}    <ImageBrush x:Key="{{sprite.trimmedName}}" ImageSource="{{texture.fullName}}" Viewbox="{{sprite.frameRect.x}},{{sprite.frameRect.y}},{{sprite.frameRect.width}},{{sprite.frameRect.height}}" ViewboxUnits="Absolute" Stretch="Fill"/>
+{% endfor %}
+</ResourceDictionary>

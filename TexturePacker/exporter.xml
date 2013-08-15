@@ -1,0 +1,51 @@
+<exporter version="1.0">
+    <!-- identifier of the exporter -->
+    <name>xaml</name>
+	
+    <!-- display name of the exporter for the combo box -->
+    <displayName>XAML Resource Dictionary</displayName>
+	
+    <!-- description of the exporter -->
+    <description>Exports each sprite as an ImageBrush resource</description>
+
+    <!-- exporter version -->
+    <version>1.0</version>
+	
+    <!-- currently only one file allowed - more to come with update -->
+    <files>
+        <file>
+            <!-- name of this file variable -->
+            <name>xaml</name>
+
+            <!-- human readable name (for GUI) -->
+            <displayName>XAML File</displayName>
+
+            <!-- file extension for the file -->
+            <fileExtension>xaml</fileExtension>
+
+            <!-- name of the template file -->
+            <template>template.xaml</template>
+        </file>
+    </files>
+
+    <!-- target framework supports trimming -->
+    <supportsTrimming>false</supportsTrimming>
+
+    <!-- target framework supports rotated sprites -->
+    <supportsRotation>false</supportsRotation>
+
+    <!-- rotated sprites direction (cw/ccw) -->
+    <rotationDirection>cw</rotationDirection>
+
+    <!-- supports npot sizes -->
+    <supportsNPOT>true</supportsNPOT>
+
+    <!-- supports file name stripping (remove .png etc) -->
+    <supportsTrimSpriteNames>yes</supportsTrimSpriteNames>
+
+    <!-- supports texure subpath -->
+    <supportsTextureSubPath>yes</supportsTextureSubPath>
+
+</exporter>
+
+
