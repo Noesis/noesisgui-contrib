@@ -1,0 +1,36 @@
+﻿<%-- 
+Name:
+Author: 
+Description: 
+--%>
+<%@ Template Language="C#" TargetLanguage="C#" Debug="True"  %>
+<%@ Property Name="InputXaml" Editor="System.Windows.Forms.Design.FileNameEditor" Type="String" %>
+<%@ Property Name="UseStart" Type="Boolean" %>
+
+<script runat="template">
+private string baseName { get;set;}
+
+</script>
+
+<%
+    // Get the base file name
+    baseName = System.IO.Path.GetFileNameWithoutExtension(InputXaml);
+%>
+
+using Noesis;
+using UnityEngine;
+
+public partial class <%= baseName %> : MonoBehaviour 
+{
+<% if (UseStart) { %>    private void STart()
+<% } else { %>  private void Awake() 
+<% } %>
+    {
+        // Important: This initializes the stuff in the designer file.
+        //            If you remove it, you'll be sorry.  Also, until
+        //            this runs, any named components won't be available.
+        InitializeComponent();
+        
+        // TODO: Add any initialization here.
+    }
+}

@@ -1,0 +1,44 @@
+﻿<%-- 
+Name:
+Author: 
+Description: 
+--%>
+<%@ Template Language="C#" TargetLanguage="C#" Debug="True" %>
+<%@ Import Namespace="System.IO" %>
+<%@ Property Category="SourceDirectory" Type="String" Editor="System.Windows.Forms.Design.FolderNameEditor" Name="SourceDirectory" %>
+<%@ Property Category="Behavior" Type="Boolean" Name="UseStart" %>
+
+<%@ Register Template="UnityCodebehind.cst" Name="XamlBehavior" %>
+<%@ Register Template="UnityCodebehindUser.cst" Name="UserBehavior" %>
+
+<script runat="template">
+void ProcessXamlFiles()
+{
+    Debugger.Launch();
+    
+    var files = Directory.GetFiles(SourceDirectory, "*.xaml");
+    foreach(var file in files)
+    {
+        var baseName = Path.GetFileNameWithoutExtension(file);
+        
+        var designerName = Path.Combine(SourceDirectory, baseName + ".g.cs");
+        var userName = Path.Combine(SourceDirectory, baseName + ".cs");
+                
+        // Run the subtemplate and generate the designer file.
+        XamlBehavior xb = this.Create<XamlBehavior>(true);
+        xb.SetProperty("InputXaml", file);
+        xb.RenderToFile(designerName, true);
+        
+        // IF the user hasn't written a file yet, then create a template for their file.
+        if (!File.Exists(userName))
+        {
+            UserBehavior ub = this.Create<UserBehavior>(true);
+            ub.SetProperty("InputXaml", file);
+            ub.SetProperty("UseStart", UseStart);
+            ub.RenderToFile(userName, true);
+        }
+    }
+}
+</script>
+
+<%ProcessXamlFiles();%>
