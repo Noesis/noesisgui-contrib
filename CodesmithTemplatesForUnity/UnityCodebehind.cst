@@ -1,0 +1,93 @@
+﻿<%-- 
+Name:
+Author: 
+Description: 
+--%>
+<%@ Template Language="C#" TargetLanguage="C#" Debug="True" CompilerVersion="v4.0" %>
+<%@ Assembly Name="System.Xml.Linq" %>
+
+<%@ Property Name="InputXaml" Editor="System.Windows.Forms.Design.FileNameEditor" Type="String" %>
+<%@ Import Namespace="System.Linq" %>
+<%@ Import Namespace="System.Xml.Linq" %>
+<%@ Import Namespace="System.Collections.Generic" %>
+
+
+
+<script runat="template">
+private string baseName { get;set;}
+const string Xaml = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
+private Dictionary<string, string> NamedUIItems = new Dictionary<string, string>();
+
+public void BuildUIInfo()
+{
+    // Walk the XAML, expose named members.
+    XDocument doc = XDocument.Load(InputXaml, LoadOptions.SetLineInfo);
+    
+    var NameAttr = XName.Get("Name");
+    
+    foreach(var e in doc.Descendants())
+    {
+        var test = e.Attribute(NameAttr);
+        
+        if (null == test)
+            continue;
+        
+        var name = e.Name.LocalName;
+        var nsName = e.Name.NamespaceName;
+        
+        switch(nsName)
+        {            
+            default:
+                // see if we need to qualify the name
+                if (nsName.StartsWith("clr-namespace:"))
+                {
+                    // qualify it.
+                    name = nsName.Substring(14) + "." + name;            
+                }                
+                break;
+        }
+            
+        NamedUIItems.Add(test.Value, name);
+    } 
+}
+</script>
+
+<%
+    // Get the base file name
+    baseName = System.IO.Path.GetFileNameWithoutExtension(InputXaml);
+
+    BuildUIInfo();
+%>
+
+// Generated -- this file will be overwritten, don't change it.
+using Noesis;
+using UnityEngine;
+
+public partial class <%=baseName %> : MonoBehaviour 
+{
+<% foreach(var x in NamedUIItems)
+{
+    %>
+    
+    // Generated from Noesis UI XAML
+    <%=x.Value %> <%= x.Key %> { get; set; }
+    
+    <%
+} %>
+    protected void InitializeComponent()
+    {
+        NoesisGUIPanel panel = gameObject.GetComponent<NoesisGUIPanel>();
+
+        var xaml = System.IO.Path.GetFileNameWithoutExtension(panel._xamlFile);
+
+        <%--
+        This is broken for a lot of cases -- it will work for simple cases, though.
+        --%>
+        if (xaml == "<%=baseName%>")
+        {
+        <% foreach(var x in NamedUIItems) { %>
+              <%=x.Key %> = (<%= x.Value %>) panel.GetContent().FindName("<%=x.Key%>");
+        <% } %>
+        }
+   }
+}
