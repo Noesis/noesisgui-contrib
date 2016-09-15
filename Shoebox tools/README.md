@@ -1,6 +1,6 @@
 ======================================
 Shoebox xml to xaml converter
-          &
+          and
 Unity shoebox xaml importer          
 ======================================
 
