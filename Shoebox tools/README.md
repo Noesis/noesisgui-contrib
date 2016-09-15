@@ -1,7 +1,5 @@
 ======================================
-Shoebox xml to xaml converter
-          and
-Unity shoebox xaml importer          
+Shoebox xml to xaml converter and Unity shoebox xaml importer
 ======================================
 
 Converter Usage
