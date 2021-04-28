@@ -1,4 +1,3 @@
-======================================
 Noesis XAML exporter for TexturePacker
 ======================================
 
@@ -12,7 +11,7 @@ Copy the following files:
 
 To:
 
-  '$TexturePacker_Install_Directory$/bin/exporters/xaml/'
+  '$TexturePacker_Install_Directory$/bin/exporters/noesisgui/'
 
 
 USAGE

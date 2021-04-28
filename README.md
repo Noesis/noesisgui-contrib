@@ -8,4 +8,5 @@ The principal aim of this project is to enable NoesisGUI community members to sh
 At present time the project includes the following extensions:
 
 * Noesis XAML exporter for TexturePacker (http://www.texturepacker.com)
-* Blend Dummy classes for NoesisGUI extensions (namespace xmlns:noesis)
+* Unity's Shoebox converter (https://assetstore.unity.com/packages/tools/sprite-management/shoebox-tools-for-unity-35760)
+* Unity's CodeSmith templates (https://www.codesmithtools.com/product/generator)

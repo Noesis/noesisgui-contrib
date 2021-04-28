@@ -6,10 +6,10 @@
     <displayName>XAML Resource Dictionary</displayName>
 	
     <!-- description of the exporter -->
-    <description>Exports each sprite as an ImageBrush resource</description>
+    <description>Exports each sprite as a CroppedBitmap resource</description>
 
     <!-- exporter version -->
-    <version>1.0</version>
+    <version>2.0</version>
 	
     <!-- currently only one file allowed - more to come with update -->
     <files>

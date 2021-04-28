@@ -3,6 +3,7 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-{% for sprite in sprites %}    <ImageBrush x:Key="{{sprite.trimmedName}}" ImageSource="{{texture.fullName}}" Viewbox="{{sprite.frameRect.x}},{{sprite.frameRect.y}},{{sprite.frameRect.width}},{{sprite.frameRect.height}}" ViewboxUnits="Absolute" Stretch="Fill"/>
+  <BitmapImage x:Key="{{texture.trimmedName}}" UriSource="{{texture.fullName}}"/>
+{% for sprite in sprites %}  <CroppedBitmap x:Key="{{sprite.trimmedName}}" Source="{StaticResource {{texture.trimmedName}}}" SourceRect="{{sprite.frameRect.x}},{{sprite.frameRect.y}},{{sprite.frameRect.width}},{{sprite.frameRect.height}}"/>
 {% endfor %}
 </ResourceDictionary>
